@@ -27,7 +27,7 @@ jobs:
         run: |
           source venv/bin/activate
           jupyter nbconvert --to script CW-2.ipynb
-          python build_model.py
+          python CW-2.py
 
       - name: Deploy Model
         run: |
