@@ -4,3 +4,4 @@ numpy==1.21.5
 gensim==4.1.2
 scikit-learn==0.24.2
 datasets==1.14.0
+flask==3.0.2
