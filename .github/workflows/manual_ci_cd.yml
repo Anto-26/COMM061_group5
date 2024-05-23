@@ -39,6 +39,10 @@ jobs:
           wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
           unzip ngrok-stable-linux-amd64.zip
 
+      - name: Install Ngrok authentication token
+        run: |
+          ./ngrok authtoken 2gtBGRr8hapwKnpp234wYnhvyRX_2NXM8kktrkH6XYnYCpBzH
+
       - name: Run ngrok
         run: |
           ./ngrok http 5000 &
