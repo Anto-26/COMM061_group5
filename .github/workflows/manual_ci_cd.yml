@@ -33,3 +33,20 @@ jobs:
         run: |
           source venv/bin/activate
           nohup python app.py &
+
+      - name: Install ngrok
+        run: |
+          wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+          unzip ngrok-stable-linux-amd64.zip
+
+      - name: Run ngrok
+        run: |
+          ./ngrok http 5000 &
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Print ngrok URL
+        run: |
+          sleep 5  # Wait for ngrok to initialize
+          curl --silent http://127.0.0.1:4040/api/tunnels | jq -r '.tunnels[0].public_url'
