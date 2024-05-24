@@ -26,8 +26,8 @@ jobs:
       - name: Convert Notebook and Train Model
         run: |
           source venv/bin/activate
-          jupyter nbconvert --to script CW-2.ipynb
-          python CW-2.py
+          jupyter nbconvert --to script Model_training.ipynb
+          python Model_training.py
 
       - name: Deploy Model
         run: |
@@ -36,16 +36,17 @@ jobs:
 
       - name: Install ngrok
         run: |
-          wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-          unzip ngrok-stable-linux-amd64.zip
+          wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -O ngrok.zip
+          unzip ngrok.zip
+          sudo mv ngrok /usr/local/bin/ngrok
 
       - name: Install Ngrok authentication token
         run: |
-          ./ngrok authtoken 2gtBGRr8hapwKnpp234wYnhvyRX_2NXM8kktrkH6XYnYCpBzH
+          ngrok authtoken 2gtBGRr8hapwKnpp234wYnhvyRX_2NXM8kktrkH6XYnYCpBzH
 
       - name: Run ngrok
         run: |
-          ./ngrok http 5000 &
+          ngrok http 5000 &
 
       - name: Install jq
         run: sudo apt-get install -y jq
